@@ -9,6 +9,10 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
+    Name: <input type='text'>
+    <br>
+    City: <input type='text'>
+    <br>
 
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
