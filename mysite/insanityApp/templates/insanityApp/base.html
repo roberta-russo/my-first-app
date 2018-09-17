@@ -9,31 +9,91 @@
     </head>
 
     <body>
-        <header>
-            <h1>Insanity</h1>
-        </header>
-
         <div class='container'>
-            <nav>
+            <header>
+                <a href="#"><img id="logo" src="/static/logo-BCM.png" alt="BCM"/></a>
+            </header>
+        
+            <nav class='first-menu'>
                 <a href='/home_page'>Home</a>
-                <a href='/page'>Form</a>
-                <a href='/login'>Login</a>
+                <a href='#'>Clinicians</a>
+                <a href='#'>Researchers</a>
+                <a href='#'>Registry Manager</a>
+                <a href='#'>SignIn/SignUp</a>
             </nav>
-            <main>
-                {% block content %}
 
-                {% endblock %}
-            </main>
+            <br>
 
-            <nav class='menu_footer'>
-                <a href='#'>Contact Us</a>
+            <nav class='second-menu'>
                 <a href='#'>FAQ</a>
-                <a href='#'>About</a>
+                <a href='#'>About Us</a>
+                <a href='#'>Contact Us</a>
+                <a href='#'>Privacy Policy</a>
             </nav>
-
+           
             <footer>
-                Copyright &copy; 2018
+                Copyright &copy; 2018 BCM 
+                <br>
+                Families Foundation 
+                <br>
+                All Rights Reserved
             </footer>
+        </div>
+
+        <div class='div-main'>
+            <button>Font-size</button>
+            <button>Contrast</button>
+            <button>Reset</button>
+
+            <main>
+                <a href="#"><img id="fonds" src="/static/chiesa_valdese.jpg" alt="chiesa_valdese"/></a>
+                
+                <div>
+                    <h1>Mission</h1>
+                    <p>This BCM Registry® is an online Patient Registry dedicated to a rare 
+                        genetic retinal disease, the Blue Cone Monochromacy. The Registry has 
+                        been created by BCM Families Foundation, a 501(c)(3) non-profit patients' 
+                        organization with the mission to eradicate Blue Cone Monochromacy.
+                    </p>
+                </div>
+                
+                <div>
+                    <h1>Purpose</h1>
+                    <p>The Purpose of the Registry is to longitudinally collect data internationally 
+                        from patients with Blue Cone Monochromacy. The Aim of this Registry is to 
+                        describe the clinical features, variations in phenotype and the natural history 
+                        this disease, meaning its characteristics, management, and long term outcomes with 
+                        and/or without treatment.
+                    </p>
+                </div>
+            </main>
+        </div>
+
+        
+            
+        <div class='account'>	
+            <h1>Register Now</h1>
+            <form>
+                <p>
+                    <label class='signup-label' for="id_username">Username:</label> 
+                    <input type='text' name='username' id="id_username" maxlength="150" value="{{form.username.value|default_if_none:""}}"/>
+                </p>
+                <p>
+                    <label class='signup-label' for='id_email'> Email: </label>
+                    <input type="text" name="email" id="id_email" maxlength="30" value="{{form.email.value}}"/>
+                           
+                </p>
+                <p>
+                    <label class='signup-label' for="id_password1">Password:</label> 
+                    <input type='password' name='password1' id="id_password1" value="{{form.username.password1|default_if_none:""}}"/>
+                    
+                </p>
+                <p>
+                    <label class='signup-label' for="id_password2">Password confirmation:</label> 
+                    <input type='password' name='password2' id="id_password2" value="{{form.username.password2|default_if_none:""}}"/>
+                    
+                </p>
+            </form>
         </div>
     </body>
 </html>

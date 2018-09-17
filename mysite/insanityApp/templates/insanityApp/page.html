@@ -2,19 +2,13 @@
 
 {% block title %} Page {% endblock %}
 {% block content %}
-
 <h1>Form</h1>
 
 
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    Name: <input type='text'>
-    <br>
-    City: <input type='text'>
-    <br>
-
-    <button type="submit" class="save btn btn-default">Save</button>
+    <button type="submit" class="save">Save</button>
 </form>
 
 
