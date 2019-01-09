@@ -1,41 +1,60 @@
-body {
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1.1;
-	font-weight: 700;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	-ms-word-break: break-all;
-	word-break: break-word;
-	-ms-hyphens: auto;
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	hyphens: auto;
-}
-
-/* ---- LEFT ----*/
-
-.container {
-    background: rgb(12,24,43);
+  /*--- HEADER -----------*/
+header {
+    text-align: center;
     color: white;
-    width: 200px;
+    background: black;
+    height:100px;
+    display:flex;    
 }
 
-#logo {
-    height: 5em;
-    padding: 10px 35px;
+header img{
+    transform: scale(0.8);
 }
 
-header{
-    background: rgb(29,29,29);
+#home-icon{
+    font-size: 28px;
+    font-weight: 400;
+    flex-grow:1;
+    margin-top: 60px;
+    margin-left:20px;
+    text-align:left;
+
+}
+
+#home-icon a{
+    text-decoration: none;
+    color:white;
+}
+
+#home-icon a:hover{
+    color:#cab86f;
+}
+
+footer {
+    text-align: center;
+    background:  #cab86f;
+    height: 30px;
+}
+
+.container{
+    display:flex;
+    height: fit-content;
 }
 
 nav {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
+    width:150px;
+    background: black;
+    font-size: 20px;
+    text-align: center;
 }
 
 nav a{
@@ -77,27 +96,123 @@ main img {
     padding: 0px 200px;
 }
 
-main div {
-    background: rgb(74,144,226);
-    color: white;
+main{
+    width: 100%;
+    padding: 20px;
 }
 
-main div p {
-    padding: 0px 20px;
-    text-align: justify;
-    line-height: 30px;
+/*------HOME----------------*/
+h1{
+    text-align: center;
+    padding-bottom: 20px;
+    margin:0;
+    font-size: 24px;
 }
 
-main div h1{
-    padding: 10px 0px 0px 20px;
+.menu-items-container{
+    display:flex;
+    text-align: center;
+}
+
+.menu-dress{
+    justify-content: flex-start; 
+}
+
+.menu-accessorise{
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.menu-item{
+    width:130px;
+    height: 170px;
+    border: 2px solid #cab86f;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.menu-item p{
+    padding: 70px 0px 70px 0px;
+}
+
+.menu-item a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 70px 5px 70px 5px;
+}
+
+.menu-item a:hover{
+    color: #cab86f;
+    font-size: 18px;
+    
+}
+
+.menu-item:hover{
+    border: 2px solid black;
+    
+}
+
+/*-------------- NEW PAGE ----------------------*/
+#create_form{
+    display: grid;
+}
+
+#create_form input,
+#create_form select{
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px black;
+    margin-bottom:15px;
+}
+
+#create_form label{
+    font-size: 18px;
+}
+
+.save-btn{
+    padding: 5px;
+    background: #cab86f;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid black;
+    width: 200px;
+}
+
+.save-btn:hover{
+    background: black;
+    color: #cab86f;
+    border: 1px solid #cab86f;
+}
+
+/*---------------- REPORT PAGE ---------------*/
+
+#report-table{
+    width:100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#report-table thead{
+    text-align: left;
+    background: black;
+    color: #cab86f;
+}
+
+#report-table tbody td{
+    border-top: 1px solid grey;
+    padding-top:5px;
 }
 
 
-/* ---- RIGHT  ----*/
+/*------------------ MAN ---------------------*/
+.sold-btn{
+    margin-top: 20px;
+}
 
-.account {
-    width: 900px;
-    background: rgb(0,185,241);
-    color: white;
-    margin-top: 30px;
+#form-man{
+    margin-left: 20px;
 }

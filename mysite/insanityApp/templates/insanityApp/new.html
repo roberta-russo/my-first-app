@@ -1,0 +1,16 @@
+{% extends "insanityApp/base.html" %}
+{% block title %} New {% endblock %}
+
+
+{% block content %}
+<h1>New</h1>
+
+<form method='POST' enctype="multipart/form-data" id='create_form'>
+    {% csrf_token %}
+    {{form}}
+
+    <button type='submit' class='save-btn'>Save</button>
+</form>
+
+
+{% endblock %}

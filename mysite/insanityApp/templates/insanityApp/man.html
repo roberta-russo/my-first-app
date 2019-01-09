@@ -1,0 +1,33 @@
+{% extends "insanityApp/base.html" %}
+{% block title %} Man {% endblock %}
+{% block content %}
+
+<h1>Man</h1>
+
+<div> 
+    <!-- <img src="/static/img/impermeabile.jpg" alt="InsanityBrand" style='transform:scale(0.5)'> -->
+
+{% for item in items %}
+    {% if item.item_type == 'Man' %}
+    <p>Name: <b>{{item.item_name}}</b></p>
+    <p>Code: <b>{{item.code}}</b></p>
+    <div style='display:flex'>
+        <img src="{{ item.image.url }}" alt="{{ item.item_name }}" height="100">
+
+        <form method="POST" id='form-man'>
+            {% csrf_token %}
+
+            {{form}}
+        <br>
+
+            <button type='submit' class='save-btn sold-btn' name="{{item.code}}">Save</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endif %}
+{% endfor %}
+
+{% endblock %}
