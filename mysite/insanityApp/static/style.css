@@ -100,9 +100,9 @@ main{
 /*------HOME----------------*/
 h1{
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     margin:0;
-    font-size: 24px;
+    font-size: 40px;
 }
 
 .menu-items-container{
@@ -125,8 +125,7 @@ h1{
     height: 220px;
     border: 2px solid #cab86f;
     border-radius: 10px;
-    margin-right: 20px;
-    margin-bottom:20px;
+    margin-bottom:80px;
     cursor: pointer;
     background-size: cover;
     background-repeat: no-repeat;
