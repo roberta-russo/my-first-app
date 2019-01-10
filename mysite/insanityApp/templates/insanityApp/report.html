@@ -53,7 +53,7 @@
             {% if item.item_type == 'Woman' %}
             <tr>
                 <td>{{item.item_name}}</td>
-                <td>{{item.tot_XS}} <span style='color: red; margin-left: 30px'>{{item.remaining_XS}}</span></td>
+                <td>{{item.tot_XS}} <span style='color: red; margin-left: 30px'>{{item.remaining_XS}}</span></td>                
                 <td>{{item.tot_S}} <span style='color: red; margin-left: 30px'>{{item.remaining_S}}</span></td>
                 <td>{{item.tot_M}} <span style='color: red; margin-left: 30px'>{{item.remaining_M}}</span></td>
                 <td>{{item.tot_L}} <span style='color: red; margin-left: 30px'>{{item.remaining_L}}</span></td>
@@ -95,6 +95,18 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% for item in items %}
+<script>
+    a = '{{ item.remaining_XS }}'
+
+    if ( a == 0){
+        console.log(a);
+    }
+
+    
+</script>
+{% endfor %}
 
 
 {% endblock %}

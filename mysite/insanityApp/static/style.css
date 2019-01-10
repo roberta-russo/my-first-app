@@ -131,6 +131,14 @@ h1{
     background-image: url("img/donna.jpg");
 }
 
+.report-menu{
+    background-image: url("img/resoconto.jpg");
+}
+
+.new-menu{
+    background-image: url("img/new.jpg");
+}
+
 .menu-item p{
     background-color: #cab86f; 
     margin-top:10%;
@@ -217,6 +225,7 @@ h1{
 #report-table tbody td{
     border-top: 1px solid grey;
     padding-top:5px;
+    font-size: 20px;
 }
 
 
