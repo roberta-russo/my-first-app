@@ -5,8 +5,8 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
+  /* For mobile phones: 
   @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
     header{
         height: 200px;
     }
@@ -17,25 +17,25 @@
         font-size: 40px;
         font-weight: 900;
     }
-  }
+  }*/
 
   /*--- HEADER -----------*/
 header {
     text-align: center;
     color: white;
     background: black;
-    height:100px;
+    height: 150px;
     display:flex;    
 }
 
 header img{
-    transform: scale(0.8);
+    margin-top:20%;
 }
 
 #home-icon{
     font-size: 28px;
     font-weight: 400;
-    margin-top: 60px;
+    margin-top: 90px;
     margin-left: 40px;
     text-align:left;
 }
@@ -47,6 +47,7 @@ header img{
 #home-icon a{
     text-decoration: none;
     color:white;
+    font-size: 40px;
 }
 
 #home-icon a:hover{
