@@ -7,22 +7,27 @@
 <div> 
     {% for item in items %}
         {% if item.item_type == 'Woman' %}
-        <p>Name: <b>{{item.item_name}}</b></p>
-        <p>Code: <b>{{item.code}}</b></p>
-        <div style='display:flex'>
-            <img src="{{ item.image.url }}" alt="{{ item.item_name }}" height="100">
+        <hr>
+        <div class='form-container'>
+            <div class='form-intro'>
+                <p>Name: <b>{{item.item_name}}</b></p>
+                <p>Code: <b>{{item.code}}</b></p>
+                <p>Color: <b>{{item.color}}</b></p>
+            </div>
+            <div class='form-div'>
+                <form method="POST" id='form-man'>
+                    {% csrf_token %}
 
-            <form method="POST" id='form-man'>
-                {% csrf_token %}
+                    {{form}}
+                <br>
 
-                {{form}}
-            <br>
-
-                <button type='submit' class='save-btn sold-btn' name="{{item.code}}">Save</button>
-            </form>
-        </div>
+                    <button type='submit' class='save-btn sold-btn' name="{{item.code}}">Save</button>
+                </form>
+            </div>
+        </div> 
         {% endif %}
     {% endfor %}
+
 </div>
     
 

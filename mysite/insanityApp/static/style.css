@@ -22,7 +22,8 @@
 hr{
     border: 1px solid #cab86f;
   }
-  /*--- HEADER -----------*/
+
+/*--- HEADER -----------*/
 header {
     text-align: center;
     color: white;
@@ -58,11 +59,28 @@ header img{
     color:#cab86f;
 }
 
+/*-- FOOTER -------*/
+
 footer {
     text-align: center;
     background:  #cab86f;
-    height: 30px;
+    height: 50px;
     width:100%;
+}
+
+footer p{
+    font-size: 20px;
+    padding: 10px;
+}
+
+/* ---- CENTER ------------*/
+main {
+    padding: 0px 40px;
+    width: 100%;
+}
+
+main img {
+    padding: 0px 200px;
 }
 
 .container{
@@ -70,37 +88,7 @@ footer {
     height: fit-content;
 }
 
-nav {
-    display: flex;
-    flex-direction: column;
-    width:150px;
-    background: black;
-    font-size: 20px;
-    text-align: center;
-}
-
-nav a{
-    width: 150px;
-    text-decoration: none;
-    color: white;
-}
-
-/* ---- CENTER ----*/
-main {
-    padding: 0px 40px;
-    width: auto;
-}
-
-main img {
-    padding: 0px 200px;
-}
-
-main{
-    width: 100%;
-    padding: 20px;
-}
-
-/*------HOME----------------*/
+/*---- HOME----------------*/
 h1{
     text-align: center;
     padding-bottom: 60px;
@@ -143,7 +131,6 @@ h1{
     background-image: url("img/donna.jpg");
 }
 
-
 .menu-item p{
     background-color: #cab86f; 
     margin-top:10%;
@@ -167,7 +154,6 @@ h1{
 
 .menu-item:hover{
     border: 2px solid black;
-    
 }
 
 /*-------------- NEW PAGE ----------------------*/
@@ -274,6 +260,10 @@ h1{
 .form-intro{
     width:400px;
     margin-left: 100px;
+}
+
+.form-intro p{
+    margin-bottom: 10px;
 }
 
 .form-div{
