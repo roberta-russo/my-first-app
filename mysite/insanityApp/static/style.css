@@ -30,6 +30,7 @@ header {
 
 header img{
     margin-top:20%;
+    margin-right: 40px;
 }
 
 #home-icon{
@@ -111,7 +112,7 @@ h1{
 }
 
 .menu-dress{
-    justify-content: center; 
+    display: inline;
 }
 
 .menu-accessorise{
@@ -120,29 +121,45 @@ h1{
 }
 
 .menu-item{
-    width:180px;
+    /* width:180px; */
     height: 220px;
     border: 2px solid #cab86f;
     border-radius: 10px;
     margin-right: 20px;
+    margin-bottom:20px;
     cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
+.man-menu{
+    background-image: url("img/uomo.jpg");
+}
+
+.woman-menu{
+    background-image: url("img/donna.jpg");
+}
+
+
 .menu-item p{
-    padding: 70px 0px 70px 0px;
+    background-color: #cab86f; 
+    margin-top:10%;
 }
 
 .menu-item a{
     text-decoration: none;
     color: black;
-    font-size: 24px;
-    padding: 70px 5px 70px 5px;
+    font-size: 40px;
+    padding: 20px 270px 20px 270px;
 }
 
 .menu-item a:hover{
-    color: #cab86f;
-    font-size: 18px;
-    
+    color: #cab86f;   
+}
+
+.menu-item p:hover{
+    background-color: black; 
 }
 
 .menu-item:hover{
