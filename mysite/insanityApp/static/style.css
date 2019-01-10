@@ -19,6 +19,9 @@
     }
   }*/
 
+hr{
+    border: 1px solid #cab86f;
+  }
   /*--- HEADER -----------*/
 header {
     text-align: center;
@@ -144,6 +147,7 @@ h1{
 .menu-item p{
     background-color: #cab86f; 
     margin-top:10%;
+    height: 55px;
 }
 
 .menu-item a{
@@ -223,8 +227,56 @@ h1{
 /*------------------ MAN ---------------------*/
 .sold-btn{
     margin-top: 20px;
+    width: 370px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 25px;
 }
 
 #form-man{
-    margin-left: 20px;
+    margin-right: 100px;
+}
+
+.form-container{
+    display:flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.form-container p,
+#form-man label{
+    font-size:25px;
+}
+
+#form-man input,
+#form-man select{
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+#form-man input{
+    padding: 7px;
+    font-size: 20px;
+}
+
+#form-man select{
+    font-size: 20px;
+    margin-right: 50px;
+    padding: 5px;
+}
+
+#form-man select option{
+    font-size: 20px;
+}
+
+.form-intro{
+    width:400px;
+    margin-left: 100px;
+}
+
+.form-div{
+    text-align: right;
+    width: 100%;
 }

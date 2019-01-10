@@ -49,7 +49,7 @@ class Item(models.Model):
     remaining_L = models.PositiveSmallIntegerField(default=0)
     tot_XL = models.PositiveSmallIntegerField(default=0)
     remaining_XL = models.PositiveSmallIntegerField(default=0)
-    image = models.ImageField(upload_to='media/%Y/%m/%d/', null=True, blank=True)
+    # image = models.ImageField(upload_to='media/%Y/%m/%d/', null=True, blank=True)
 
 class Man(models.Model):
     # man_item = models.ForeignKey(Item,

@@ -15,12 +15,14 @@ class CreateItemForm(forms.ModelForm):
     tot_M= forms.IntegerField(min_value = 0, max_value = 100)
     tot_L= forms.IntegerField(min_value = 0, max_value = 100)
     tot_XL= forms.IntegerField(min_value = 0, max_value = 100)
-    image = forms.FileField()
+    # image = forms.FileField()
     class Meta:
         model = Item
         fields = ('item_name', 'item_type', 'color', 'code',
-                'tot_M', 'tot_L', 'tot_S', 'tot_XS', 'tot_XL', 
-                'image', )
+                'tot_M', 'tot_L', 'tot_S', 'tot_XS', 'tot_XL')
+        # fields = ('item_name', 'item_type', 'color', 'code',
+        #     'tot_M', 'tot_L', 'tot_S', 'tot_XS', 'tot_XL', 
+        #     'image', )
         item_type = forms.MultipleChoiceField(
             required = False,
             widget = forms.CheckboxSelectMultiple,
