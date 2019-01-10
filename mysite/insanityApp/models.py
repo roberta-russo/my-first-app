@@ -29,10 +29,10 @@ class Size(Enum):
     XL = 'XL'
 
 class ITEM_TYPE_CHOICES(Enum):
-    Man = 'man'
-    Woman = 'woman'
-    Accessoriese = 'accessoriese'
-    Bracialet = 'bracialet'
+    Man = 'Man'
+    Woman = 'Woman'
+    Accessoriese = 'Accessories'
+    Bracelets = 'Bracelets'
 
 class Item(models.Model):
     code = models.CharField(max_length=10, default='')

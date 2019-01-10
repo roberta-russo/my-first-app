@@ -159,28 +159,38 @@ h1{
 /*-------------- NEW PAGE ----------------------*/
 #create_form{
     display: grid;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 #create_form input,
 #create_form select{
-    padding: 5px;
+    /* width: 100px; */
     border-radius: 5px;
-    border: solid 1px black;
-    margin-bottom:15px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 20px;
 }
 
 #create_form label{
-    font-size: 18px;
+    font-size: 25px;
+    font-weight: 700;
+    font-variant: small-caps;
+    margin-bottom: 5px;
 }
 
 .save-btn{
-    padding: 5px;
+    padding: 20px;
     background: #cab86f;
     color: black;
     font-weight: 700;
+    font-size: 25px;
     cursor: pointer;
     border: 1px solid black;
-    width: 200px;
+    border-radius: 5px;
+    /* width: 200px; */
+    margin-bottom: 40px;
 }
 
 .save-btn:hover{
