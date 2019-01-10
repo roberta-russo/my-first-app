@@ -22,11 +22,11 @@
             {% if item.item_type == 'Man' %}
             <tr>
                 <td>{{item.item_name}}</td>
-                <td>{{item.tot_XS}}</td>
-                <td>{{item.tot_S}}</td>
-                <td>{{item.tot_M}}</td>
-                <td>{{item.tot_L}}</td>
-                <td>{{item.tot_XL}}</td>
+                <td>{{item.tot_XS}} <span style='color: red; margin-left: 30px'>{{item.remaining_XS}}</span></td>
+                <td>{{item.tot_S}} <span style='color: red; margin-left: 30px'>{{item.remaining_S}}</span></td>
+                <td>{{item.tot_M}} <span style='color: red; margin-left: 30px'>{{item.remaining_M}}</span></td>
+                <td>{{item.tot_L}} <span style='color: red; margin-left: 30px'>{{item.remaining_L}}</span></td>
+                <td>{{item.tot_XL}} <span style='color: red; margin-left: 30px'>{{item.remaining_XL}}</span></td>
                 <td>{{item.color}}</td>                
             </tr>
             {% endif %}
