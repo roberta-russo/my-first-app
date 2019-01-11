@@ -121,6 +121,9 @@ h1{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
+    text-align: center;
+    line-height: 50px;
 }
 
 .man-menu{
@@ -141,7 +144,7 @@ h1{
 
 .menu-item p{
     background-color: #cab86f; 
-    margin-top:10%;
+    margin-top:100px;
     height: 55px;
 }
 
@@ -288,4 +291,29 @@ h1{
 .form-div{
     text-align: right;
     width: 100%;
+}
+
+
+
+/*------BOOTSTRAP--------*/
+.container{
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto
+}
+    
+@media (min-width:576px){
+    .container{max-width:540px}
+}
+
+@media (min-width:768px){
+    .container{max-width:720px}
+}
+@media (min-width:992px){
+    .container{max-width:960px}
+}
+@media (min-width:1200px){
+    .container{max-width:1140px}
 }
