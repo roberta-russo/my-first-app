@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.forms import inlineformset_factory
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 
 from .models import *
 from .forms import *
@@ -50,95 +50,184 @@ def man(request):
     context={}
     items = Item.objects.all()
     items_man = Man.objects.all()
+    items_unisex = Unisex.objects.all()
+    form_unisex = ClothingFormUnisex(request.POST)
+    form_man = ClothingFormMan(request.POST)
 
     a = []
     for k in request.POST:
         a.append(k)
 
-    form = ClothingForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            clothing = form.save(commit=False)
-            now = datetime.datetime.now()
-            items_man.date = now
-            clothing.save()
+    if a != []:
+        print(a[3].split(','))
+        b = a[3].split(',')
+        print('b[0] =', b[0])
+        print('b[1] =', b[1])
 
-            item_size = form.cleaned_data.get('size')
+
+        if b[0] == 'Unisex':
+            if request.method == 'POST':
+                if form_unisex.is_valid():
+                    clothing = form_unisex.save(commit=False)
+                    now = datetime.datetime.now()
+                    items_unisex.date = now
+                    clothing.save()
+            else:
+                form_unisex = ClothingFormUnisex()
+
+            last_item = items_unisex.last()
+            last_item.code = b[1]
+            last_item.save()
+
+            item_size = form_unisex.cleaned_data.get('size')
             print('item size =', item_size )
-            print('item sold =', form.cleaned_data.get('sold') )
+            print('item sold =', form_unisex.cleaned_data.get('sold') )
+               
+            # save the remaining size of this item                 
+            for item in items:
+                if item.code == b[1]:
+                    if item_size == 'XS':
+                        if last_item.sold <= item.remaining_XS:
+                            item.remaining_XS = item.remaining_XS - last_item.sold
+                            print('XS rimanenti =',  item.remaining_XS)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_XS == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'S':
+                        if last_item.sold <= item.remaining_S:
+                            item.remaining_S = item.remaining_S - last_item.sold
+                            print('S rimanenti =',  item.remaining_S)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_S == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'M':
+                        if last_item.sold <= item.remaining_M:
+                            item.remaining_M = item.remaining_M - last_item.sold
+                            print('M rimanenti =',  item.remaining_M)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_M == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'L':
+                        if last_item.sold <= item.remaining_L:
+                            item.remaining_L = item.remaining_L - last_item.sold
+                            print('L rimanenti =',  item.remaining_L)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_L == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'XL':
+                        if last_item.sold <= item.remaining_XL:
+                            item.remaining_XL = item.remaining_XL - last_item.sold
+                            print('XL rimanenti =',  item.remaining_XL)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_XL == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')       
+            
+        elif b[0] == 'Man':
+            if request.method == 'POST':
+                if form_man.is_valid():
+                    clothing = form_man.save(commit=False)
+                    now = datetime.datetime.now()
+                    items_man.date = now
+                    clothing.save()
+            else:
+                form_man = ClothingFormMan()
+            
+            last_item = items_man.last()
+            last_item.code = b[1]
+            last_item.save()
 
-            if a != []:
-                # save the item's code
-                print('code =', a[3])
-                last_item = items_man.last()
-                last_item.code = a[3]
-                last_item.save()
+            item_size = form_man.cleaned_data.get('size')
+            print('item size =', item_size )
+            print('item sold =', form_man.cleaned_data.get('sold') )
+               
+            # save the remaining size of this item                 
+            for item in items:
+                if item.code == b[1]:
+                    if item_size == 'XS':
+                        if last_item.sold <= item.remaining_XS:
+                            item.remaining_XS = item.remaining_XS - last_item.sold
+                            print('XS rimanenti =',  item.remaining_XS)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_XS == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'S':
+                        if last_item.sold <= item.remaining_S:
+                            item.remaining_S = item.remaining_S - last_item.sold
+                            print('S rimanenti =',  item.remaining_S)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_S == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'M':
+                        if last_item.sold <= item.remaining_M:
+                            item.remaining_M = item.remaining_M - last_item.sold
+                            print('M rimanenti =',  item.remaining_M)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_M == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'L':
+                        if last_item.sold <= item.remaining_L:
+                            item.remaining_L = item.remaining_L - last_item.sold
+                            print('L rimanenti =',  item.remaining_L)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_L == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                    elif item_size == 'XL':
+                        if last_item.sold <= item.remaining_XL:
+                            item.remaining_XL = item.remaining_XL - last_item.sold
+                            print('XL rimanenti =',  item.remaining_XL)
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
+                        elif item.remaining_XL == 0:
+                            print('non ne hai più')
+                            return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                        else:
+                            return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
 
-                # save the remaining size of this item 
-                # list_size = {'remaining_XS' : 'XS', 
-                #             'remaining_S' : 'S',
-                #             'remaining_M' : 'M',
-                #             'remaining_L' : 'L',
-                #             'remaining_XL' : 'XL'
-                #             }
+            # if b != []:                
+            #     # save the remaining size of this item 
+            #     # list_size = {'remaining_XS' : 'XS', 
+            #     #             'remaining_S' : 'S',
+            #     #             'remaining_M' : 'M',
+            #     #             'remaining_L' : 'L',
+            #     #             'remaining_XL' : 'XL'
+            #     #             }
                 
-                for item in items:
-                    if item.code == a[3]:
-                        if item_size == 'XS':
-                            if last_item.sold <= item.remaining_XS:
-                                item.remaining_XS = item.remaining_XS - last_item.sold
-                                print('XS rimanenti =',  item.remaining_XS)
-                                item.save()
-                            elif item.remaining_XS == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
-                        elif item_size == 'S':
-                            if last_item.sold <= item.remaining_S:
-                                item.remaining_S = item.remaining_S - last_item.sold
-                                print('S rimanenti =',  item.remaining_S)
-                                item.save()
-                            elif item.remaining_S == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
-                        elif item_size == 'M':
-                            if last_item.sold <= item.remaining_M:
-                                item.remaining_M = item.remaining_M - last_item.sold
-                                print('M rimanenti =',  item.remaining_M)
-                                item.save()
-                            elif item.remaining_M == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
-                        elif item_size == 'L':
-                            if last_item.sold <= item.remaining_L:
-                                item.remaining_L = item.remaining_L - last_item.sold
-                                print('L rimanenti =',  item.remaining_L)
-                                item.save()
-                            elif item.remaining_L == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
-                        elif item_size == 'XL':
-                            if last_item.sold <= item.remaining_XL:
-                                item.remaining_XL = item.remaining_XL - last_item.sold
-                                print('XL rimanenti =',  item.remaining_XL)
-                                item.save()
-                            elif item.remaining_XL == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                                 
                 #         elif item_size == 'S':
                 #             last_item.remaining_S = item.tot_S - last_item.sold
@@ -158,60 +247,63 @@ def man(request):
                 #             last_item.save()
                 #         else:
                 #             print('Size Error')
-    else:
-        form = ClothingForm()
+
         
-    context['form'] = form
+    
     context['items'] = items
+    context['form_unisex'] = form_unisex
+    context['form_man'] = form_man
     return render(request, 'insanityApp/man.html', context)
+
 
 def woman(request):
     context={}
     items = Item.objects.all()
     items_woman = Woman.objects.all()
+    items_unisex = Unisex.objects.all()
+    form_unisex = ClothingFormUnisex(request.POST)
+    form_woman = ClothingFormWoman(request.POST)
 
     a = []
     for k in request.POST:
         a.append(k)
 
-    form = ClothingForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            clothing = form.save(commit=False)
-            now = datetime.datetime.now()
-            items_woman.date = now
-            clothing.save()
+    if a != []:
+        print(a[3].split(','))
+        b = a[3].split(',')
+        print('b[0] =', b[0])
+        print('b[1] =', b[1])
 
-            item_size = form.cleaned_data.get('size')
-            print('item size =', item_size )
-            print('item sold =', form.cleaned_data.get('sold') )
 
-            if a != []:
-                # save the item's code
-                print('code =', a[3])
-                last_item = items_woman.last()
-                last_item.code = a[3]
+        if b[0] == 'Unisex':
+            if request.method == 'POST':
+                if form_unisex.is_valid():
+                    clothing = form_unisex.save(commit=False)
+                    now = datetime.datetime.now()
+                    items_unisex.date = now
+                    clothing.save()
+            
+
+                last_item = items_unisex.last()
+                last_item.code = b[1]
                 last_item.save()
 
-                # save the remaining size of this item 
-                # list_size = {'remaining_XS' : 'XS', 
-                #             'remaining_S' : 'S',
-                #             'remaining_M' : 'M',
-                #             'remaining_L' : 'L',
-                #             'remaining_XL' : 'XL'
-                #             }
+                item_size = form_unisex.cleaned_data.get('size')
+                print('item size =', item_size )
+                print('item sold =', form_unisex.cleaned_data.get('sold') )
                 
+                # save the remaining size of this item                 
                 for item in items:
-                    if item.code == a[3]:
+                    if item.code == b[1]:
                         if item_size == 'XS':
                             if last_item.sold <= item.remaining_XS:
                                 item.remaining_XS = item.remaining_XS - last_item.sold
                                 print('XS rimanenti =',  item.remaining_XS)
                                 item.save()
+                                return render(request, 'insanityApp/home.html', context)
                             elif item.remaining_XS == 0:
                                 print('non ne hai più')
                                 return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
                             else:
                                 return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'S':
@@ -219,10 +311,10 @@ def woman(request):
                                 item.remaining_S = item.remaining_S - last_item.sold
                                 print('S rimanenti =',  item.remaining_S)
                                 item.save()
+                                return render(request, 'insanityApp/home.html', context)
                             elif item.remaining_S == 0:
                                 print('non ne hai più')
                                 return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
                             else:
                                 return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'M':
@@ -230,10 +322,10 @@ def woman(request):
                                 item.remaining_M = item.remaining_M - last_item.sold
                                 print('M rimanenti =',  item.remaining_M)
                                 item.save()
+                                return render(request, 'insanityApp/home.html', context)
                             elif item.remaining_M == 0:
                                 print('non ne hai più')
                                 return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
                             else:
                                 return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'L':
@@ -241,10 +333,10 @@ def woman(request):
                                 item.remaining_L = item.remaining_L - last_item.sold
                                 print('L rimanenti =',  item.remaining_L)
                                 item.save()
+                                return render(request, 'insanityApp/home.html', context)
                             elif item.remaining_L == 0:
                                 print('non ne hai più')
                                 return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
                             else:
                                 return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'XL':
@@ -252,37 +344,98 @@ def woman(request):
                                 item.remaining_XL = item.remaining_XL - last_item.sold
                                 print('XL rimanenti =',  item.remaining_XL)
                                 item.save()
+                                return render(request, 'insanityApp/home.html', context)
                             elif item.remaining_XL == 0:
                                 print('non ne hai più')
                                 return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                                # return render(request, 'insanityApp/man.html', context)
+                            else:
+                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')  
+            else:
+                form_unisex = ClothingFormUnisex()     
+        elif b[0] == 'Woman':
+            if request.method == 'POST':
+                if form_woman.is_valid():
+                    clothing = form_woman.save(commit=False)
+                    now = datetime.datetime.now()
+                    items_woman.date = now
+                    clothing.save()
+
+            
+                last_item = items_woman.last()
+                last_item.code = b[1]
+                last_item.save()
+
+                item_size = form_woman.cleaned_data.get('size')
+                print('item size =', item_size )
+                print('item sold =', form_woman.cleaned_data.get('sold') )
+                
+                # save the remaining size of this item                 
+                for item in items:
+                    if item.code == b[1]:
+                        if item_size == 'XS':
+                            if last_item.sold <= item.remaining_XS:
+                                item.remaining_XS = item.remaining_XS - last_item.sold
+                                print('XS rimanenti =',  item.remaining_XS)
+                                item.save()
+                                return render(request, 'insanityApp/home.html', context)
+                            elif item.remaining_XS == 0:
+                                print('non ne hai più')
+                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
                             else:
                                 return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
-                                
-                #         elif item_size == 'S':
-                #             last_item.remaining_S = item.tot_S - last_item.sold
-                #             print('S rimanenti =',  last_item.remaining_S)
-                #             last_item.save()
-                #         elif item_size == 'M':
-                #             last_item.remaining_M = item.tot_M - last_item.sold
-                #             print('M rimanenti =',  last_item.remaining_M)
-                #             last_item.save()
-                #         elif item_size == 'L':
-                #             last_item.remaining_L = item.tot_L - last_item.sold
-                #             print('L rimanenti =',  last_item.remaining_L)
-                #             last_item.save()
-                #         elif item_size == 'XL':
-                #             last_item.remaining_L = item.tot_XL - last_item.sold
-                #             print('XL rimanenti =',  last_item.remaining_XL)
-                #             last_item.save()
-                #         else:
-                #             print('Size Error')
-    else:
-        form = ClothingForm()
-        
-    context['form'] = form
+                        elif item_size == 'S':
+                            if last_item.sold <= item.remaining_S:
+                                item.remaining_S = item.remaining_S - last_item.sold
+                                print('S rimanenti =',  item.remaining_S)
+                                item.save()
+                                return render(request, 'insanityApp/home.html', context)
+                            elif item.remaining_S == 0:
+                                print('non ne hai più')
+                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                            else:
+                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                        elif item_size == 'M':
+                            if last_item.sold <= item.remaining_M:
+                                item.remaining_M = item.remaining_M - last_item.sold
+                                print('M rimanenti =',  item.remaining_M)
+                                item.save()
+                                return render(request, 'insanityApp/home.html', context)
+                            elif item.remaining_M == 0:
+                                print('non ne hai più')
+                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                            else:
+                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                        elif item_size == 'L':
+                            if last_item.sold <= item.remaining_L:
+                                item.remaining_L = item.remaining_L - last_item.sold
+                                print('L rimanenti =',  item.remaining_L)
+                                item.save()
+                                return render(request, 'insanityApp/home.html', context)
+                            elif item.remaining_L == 0:
+                                print('non ne hai più')
+                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                            else:
+                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                        elif item_size == 'XL':
+                            if last_item.sold <= item.remaining_XL:
+                                item.remaining_XL = item.remaining_XL - last_item.sold
+                                print('XL rimanenti =',  item.remaining_XL)
+                                item.save()
+                                return render(request, 'insanityApp/home.html', context)
+                            elif item.remaining_XL == 0:
+                                print('non ne hai più')
+                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                            else:
+                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+        else:
+                form_woman = ClothingFormMan()
+ 
+    
     context['items'] = items
+    context['form_unisex'] = form_unisex
+    context['form_woman'] = form_woman
     return render(request, 'insanityApp/woman.html', context)
+
 
 def accessories(request):
     return render(request, 'insanityApp/accessories.html', {})

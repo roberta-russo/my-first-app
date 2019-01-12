@@ -20,10 +20,31 @@
                 <form method="POST" id='form-man'>
                     {% csrf_token %}
 
-                    {{form}}
+                    {{form_man}}
                 <br>
 
-                    <button type='submit' class='save-btn sold-btn' name="{{item.code}}">Save</button>
+                    <button type='submit' class='save-btn sold-btn' name="{{item.item_type}},{{item.code}}">Save</button>
+                </form>
+            </div>
+        </div> 
+
+        {% elif item.item_type == 'Unisex' %}
+        <hr>
+        <div class='form-container'>
+            <div class='form-intro'>
+                <p>Name: <b>{{item.item_name}}</b></p>
+                <p>Code: <b>{{item.code}}</b></p>
+                <p>Color: <b>{{item.color}}</b></p>
+            </div>
+            <div class='form-div'>
+                <!-- <img src="{{ item.image.url }}" alt="{{ item.item_name }}" height="100"> -->
+                <form method="POST" id='form-man'>
+                    {% csrf_token %}
+
+                    {{form_unisex}}
+                <br>
+
+                    <button type='submit' class='save-btn sold-btn' name="{{item.item_type}},{{item.code}}">Save</button>
                 </form>
             </div>
         </div> 

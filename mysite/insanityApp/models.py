@@ -7,7 +7,7 @@ from enum import Enum
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, default='')
     text = models.TextField()
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -29,6 +29,7 @@ class Size(Enum):
     XL = 'XL'
 
 class ITEM_TYPE_CHOICES(Enum):
+    Unisex = 'Unisex'
     Man = 'Man'
     Woman = 'Woman'
     Accessoriese = 'Accessories'
@@ -66,6 +67,12 @@ class Man(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
 
 class Woman(models.Model):
+    code = models.CharField(max_length=10, default='')
+    size = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in Size], default='')
+    sold = models.PositiveSmallIntegerField(default=0)
+    created_date = models.DateTimeField(default=timezone.now)
+
+class Unisex(models.Model):
     code = models.CharField(max_length=10, default='')
     size = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in Size], default='')
     sold = models.PositiveSmallIntegerField(default=0)

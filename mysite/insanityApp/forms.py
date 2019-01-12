@@ -32,10 +32,39 @@ class CreateItemForm(forms.ModelForm):
 
 ###############################################
 
-class ClothingForm(forms.ModelForm):
+class ClothingFormMan(forms.ModelForm):
     sold = forms.IntegerField(min_value = 0, max_value = 100)
     class Meta:
         model = Man
+        fields = ('size','sold', )
+        size = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=Size,
+        )
+        widgests = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+class ClothingFormUnisex(forms.ModelForm):
+    sold = forms.IntegerField(min_value = 0, max_value = 100)
+    class Meta:
+        model = Unisex
+        fields = ('size','sold', )
+        size = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+            choices=Size,
+        )
+        widgests = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+class ClothingFormWoman(forms.ModelForm):
+    sold = forms.IntegerField(min_value = 0, max_value = 100)
+    class Meta:
+        model = Woman
         fields = ('size','sold', )
         size = forms.MultipleChoiceField(
             required=False,

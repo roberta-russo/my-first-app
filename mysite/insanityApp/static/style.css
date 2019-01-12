@@ -331,3 +331,8 @@ h1{
         font-size:25px;
         padding: 0;}
 }
+
+
+.errorlist{
+    display:none;
+}
