@@ -128,6 +128,7 @@ h1{
 
 .man-menu{
     background-image: url("img/uomo.jpg");
+    margin-top: 30px;
 }
 
 .woman-menu{
@@ -140,6 +141,7 @@ h1{
 
 .new-menu{
     background-image: url("img/new.jpg");
+    margin-top: 30px;
 }
 
 .menu-item p{
@@ -284,7 +286,7 @@ h1{
 /*------------------ MAN ---------------------*/
 .sold-btn{
     margin-top: 20px;
-    width: 370px;
+    width: 180px;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 25px;
@@ -367,18 +369,28 @@ h1{
     .container{max-width:1200px}
 } */
 
-
+@media (max-width:1030px){
+    .menu-item a{
+        font-size:35px;
+        padding: 20px 200px;}
+}
 
 @media (max-width:990px){
     .menu-item a{
         font-size:30px;
-        padding:0;}
+        padding: 0px 260px;}
 }
 
 @media (max-width:900px){
     .menu-item a{
+        font-size:28px;
+        padding: 0px 200px;}
+}
+
+@media (max-width:800px){
+    .menu-item a{
         font-size:25px;
-        padding: 0;}
+        padding: 0px;}
 }
 
 

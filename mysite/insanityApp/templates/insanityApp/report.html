@@ -22,7 +22,7 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
@@ -112,7 +112,7 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
@@ -201,7 +201,7 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
@@ -276,27 +276,16 @@
 <table id='report-table' >
     <thead>
         <tr>
-            <th>NAME</th>
-            <th>XS</th>
-            <th>S</th>
-            <th>M</th>
-            <th>L</th>
-            <th>XL</th>
-            <th>COLOR</th>
-            
+            <th>Prodotto</th>
+            <th>Codice</th>
+            <th>Colore</th>
         </tr>
     </thead>
     <tbody>
         {% for item in items %}
             {% if item.item_type == 'Accessoriese' %}
             <tr>
-                <td>{{item.item_name}}</td>
-                <td>{{item.tot_XS}}</td>
-                <td>{{item.tot_S}}</td>
-                <td>{{item.tot_M}}</td>
-                <td>{{item.tot_L}}</td>
-                <td>{{item.tot_XL}}</td>
-                <td>{{item.color}}</td>               
+                            
             </tr>
             {% endif %}
         {% endfor %}
