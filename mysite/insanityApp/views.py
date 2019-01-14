@@ -88,12 +88,14 @@ def man(request):
             for item in items:
                 if item.code == b[1]:
                     if item_size == 'XS':
-                        prova(item, last_item)
-                        # else: #'Aggiungi'
-                        #     item.tot_XS = item.tot_XS + last_item.sold
-                        #     item.remaining_XS = item.remaining_XS + last_item.sold
-                        #     item.save()
-                        #     return render(request, 'insanityApp/home.html', context)
+                        if (b[2] == 'Venduto') :
+                            check_XS(item, last_item)
+                            # return render(request, 'insanityApp/home.html', context)
+                        else: #'Aggiungi'
+                            item.tot_XS = item.tot_XS + last_item.sold
+                            item.remaining_XS = item.remaining_XS + last_item.sold
+                            item.save()
+                            return render(request, 'insanityApp/home.html', context)
                     elif item_size == 'S':
                         if (b[2] == 'Venduto') :
                             if last_item.sold <= item.remaining_S:
@@ -348,60 +350,90 @@ def woman(request):
                 for item in items:
                     if item.code == b[1]:
                         if item_size == 'XS':
-                            if last_item.sold <= item.remaining_XS:
-                                item.remaining_XS = item.remaining_XS - last_item.sold
-                                print('XS rimanenti =',  item.remaining_XS)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_XS:
+                                    item.remaining_XS = item.remaining_XS - last_item.sold
+                                    print('XS rimanenti =',  item.remaining_XS)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_XS == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_XS = item.tot_XS + last_item.sold
+                                item.remaining_XS = item.remaining_XS + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_XS == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'S':
-                            if last_item.sold <= item.remaining_S:
-                                item.remaining_S = item.remaining_S - last_item.sold
-                                print('S rimanenti =',  item.remaining_S)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_S:
+                                    item.remaining_S = item.remaining_S - last_item.sold
+                                    print('S rimanenti =',  item.remaining_S)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_S == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_S = item.tot_S + last_item.sold
+                                item.remaining_S = item.remaining_S + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_S == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'M':
-                            if last_item.sold <= item.remaining_M:
-                                item.remaining_M = item.remaining_M - last_item.sold
-                                print('M rimanenti =',  item.remaining_M)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_M:
+                                    item.remaining_M = item.remaining_M - last_item.sold
+                                    print('M rimanenti =',  item.remaining_M)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_M == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_M = item.tot_M + last_item.sold
+                                item.remaining_M = item.remaining_M + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_M == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'L':
-                            if last_item.sold <= item.remaining_L:
-                                item.remaining_L = item.remaining_L - last_item.sold
-                                print('L rimanenti =',  item.remaining_L)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_L:
+                                    item.remaining_L = item.remaining_L - last_item.sold
+                                    print('L rimanenti =',  item.remaining_L)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_L == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_L = item.tot_L + last_item.sold
+                                item.remaining_L = item.remaining_L + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_L == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'XL':
-                            if last_item.sold <= item.remaining_XL:
-                                item.remaining_XL = item.remaining_XL - last_item.sold
-                                print('XL rimanenti =',  item.remaining_XL)
-                                item.save()
-                                return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_XL == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')  
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_XL:
+                                    item.remaining_XL = item.remaining_XL - last_item.sold
+                                    print('XL rimanenti =',  item.remaining_XL)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_XL == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_XL = item.tot_XL + last_item.sold
+                                item.remaining_XL = item.remaining_XL + last_item.sold
+                                item.save()  
+                                return render(request, 'insanityApp/home.html', context)  
             else:
                 form_unisex = ClothingFormUnisex()     
         elif b[0] == 'Woman':
@@ -425,60 +457,90 @@ def woman(request):
                 for item in items:
                     if item.code == b[1]:
                         if item_size == 'XS':
-                            if last_item.sold <= item.remaining_XS:
-                                item.remaining_XS = item.remaining_XS - last_item.sold
-                                print('XS rimanenti =',  item.remaining_XS)
-                                item.save()
-                                return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_XS == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_XS:
+                                    item.remaining_XS = item.remaining_XS - last_item.sold
+                                    print('XS rimanenti =',  item.remaining_XS)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_XS == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_XS = item.tot_XS + last_item.sold
+                                item.remaining_XS = item.remaining_XS + last_item.sold
+                                item.save()  
+                                return render(request, 'insanityApp/home.html', context) 
                         elif item_size == 'S':
-                            if last_item.sold <= item.remaining_S:
-                                item.remaining_S = item.remaining_S - last_item.sold
-                                print('S rimanenti =',  item.remaining_S)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_S:
+                                    item.remaining_S = item.remaining_S - last_item.sold
+                                    print('S rimanenti =',  item.remaining_S)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_S == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_S = item.tot_S + last_item.sold
+                                item.remaining_S = item.remaining_S + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_S == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'M':
-                            if last_item.sold <= item.remaining_M:
-                                item.remaining_M = item.remaining_M - last_item.sold
-                                print('M rimanenti =',  item.remaining_M)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_M:
+                                    item.remaining_M = item.remaining_M - last_item.sold
+                                    print('M rimanenti =',  item.remaining_M)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_M == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_M = item.tot_M + last_item.sold
+                                item.remaining_M = item.remaining_M + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_M == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'L':
-                            if last_item.sold <= item.remaining_L:
-                                item.remaining_L = item.remaining_L - last_item.sold
-                                print('L rimanenti =',  item.remaining_L)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_L:
+                                    item.remaining_L = item.remaining_L - last_item.sold
+                                    print('L rimanenti =',  item.remaining_L)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_L == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_L = item.tot_L + last_item.sold
+                                item.remaining_L = item.remaining_L + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_L == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
                         elif item_size == 'XL':
-                            if last_item.sold <= item.remaining_XL:
-                                item.remaining_XL = item.remaining_XL - last_item.sold
-                                print('XL rimanenti =',  item.remaining_XL)
-                                item.save()
+                            if (b[2] == 'Venduto') :
+                                if last_item.sold <= item.remaining_XL:
+                                    item.remaining_XL = item.remaining_XL - last_item.sold
+                                    print('XL rimanenti =',  item.remaining_XL)
+                                    item.save()
+                                    return render(request, 'insanityApp/home.html', context)
+                                elif item.remaining_XL == 0:
+                                    print('non ne hai più')
+                                    return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
+                                else:
+                                    return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
+                            else: #'Aggiungi'
+                                item.tot_XL = item.tot_XL + last_item.sold
+                                item.remaining_XL = item.remaining_XL + last_item.sold
+                                item.save()  
                                 return render(request, 'insanityApp/home.html', context)
-                            elif item.remaining_XL == 0:
-                                print('non ne hai più')
-                                return HttpResponse('Attenzione! Zero articoli per questo prodotto.')
-                            else:
-                                return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
         else:
                 form_woman = ClothingFormMan()
  
@@ -499,7 +561,7 @@ def bracelets(request):
 
 
 
-def prova(item, last_item):
+def check_XS(item, last_item):
     if last_item.sold <= item.remaining_XS:
         item.remaining_XS = item.remaining_XS - last_item.sold
         print('XS rimanenti =',  item.remaining_XS)
