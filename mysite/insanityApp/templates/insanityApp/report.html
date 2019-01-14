@@ -292,7 +292,6 @@
     </tbody>
 </table>
 
-
 <script>
     td = $('.tot_remaining').length;
     for (var i=0; i<td; i++){
@@ -317,8 +316,14 @@
                 $(this).css('color', 'red');
             }
         })
-        
     }
+
+    $('button').click(function(){
+        td = $(this).parent();
+        tr = td.parent();
+        tr.toggleClass('toggle');
+        
+    })
 
     
     
