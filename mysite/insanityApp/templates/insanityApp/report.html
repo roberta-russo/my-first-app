@@ -4,36 +4,6 @@
 {% block content %}
 <h1>Report</h1>
 
-
-<!-- <table id='report-table'>
-    <thead>
-        <tr>
-            <th>NAME</th>
-            <th>XS</th>
-            <th>S</th>
-            <th>M</th>
-            <th>L</th>
-            <th>XL</th>
-            <th>COLOR</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in items %}
-            {% if item.item_type == 'Man' %}
-            <tr>
-                <td>{{item.item_name}}</td>
-                <td class='xs'>{{item.tot_XS}} <span style=' margin-left: 30px'>{{item.remaining_XS}}</span></td>
-                <td>{{item.tot_S}} <span style='color: red; margin-left: 30px'>{{item.remaining_S}}</span></td>
-                <td>{{item.tot_M}} <span style='color: red; margin-left: 30px'>{{item.remaining_M}}</span></td>
-                <td>{{item.tot_L}} <span style='color: red; margin-left: 30px'>{{item.remaining_L}}</span></td>
-                <td>{{item.tot_XL}} <span style='color: red; margin-left: 30px'>{{item.remaining_XL}}</span></td>
-                <td>{{item.color}}</td>                
-            </tr>
-            {% endif %}
-        {% endfor %}
-    </tbody>
-</table> -->
-
 <h2>Man</h2>
 <table id='report-table'>
     <thead>
@@ -41,7 +11,6 @@
             <th>Prodotto</th>
             <th>Codice</th>
             <th>Colore</th>
-            <th>Tot. Rimanenti</th>
             <th></th>
         </tr>
     </thead>
@@ -52,7 +21,6 @@
             <td>{{item.item_name}}</td>
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
-            <td class='tot_remaining'></td>
             <td>
                 <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
             </td>
@@ -120,7 +88,6 @@
                     </p>
                 </div>
             </div>
-        
         {% endif %}
     {% endfor %}
     </tbody>
@@ -131,29 +98,177 @@
 <table id='report-table'>
     <thead>
         <tr>
-            <th>NAME</th>
-            <th>XS</th>
-            <th>S</th>
-            <th>M</th>
-            <th>L</th>
-            <th>XL</th>
-            <th>COLOR</th>
+            <th>Prodotto</th>
+            <th>Codice</th>
+            <th>Colore</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {% for item in items %}
-            {% if item.item_type == 'Woman' %}
-            <tr>
-                <td>{{item.item_name}}</td>
-                <td class='xs'>{{item.tot_XS}} <span style='color: red; margin-left: 30px'>{{item.remaining_XS}}</span></td>                
-                <td>{{item.tot_S}} <span style='color: red; margin-left: 30px'>{{item.remaining_S}}</span></td>
-                <td>{{item.tot_M}} <span style='color: red; margin-left: 30px'>{{item.remaining_M}}</span></td>
-                <td>{{item.tot_L}} <span style='color: red; margin-left: 30px'>{{item.remaining_L}}</span></td>
-                <td>{{item.tot_XL}} <span style='color: red; margin-left: 30px'>{{item.remaining_XL}}</span></td>
-                <td>{{item.color}}</td>                
-            </tr>
-            {% endif %}
-        {% endfor %}
+    {% for item in items %}
+        {% if item.item_type == 'Woman'%}
+        <tr>
+            <td>{{item.item_name}}</td>
+            <td>{{item.code}}</td>
+            <td>{{item.color}}</td>
+            <td>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+            </td>
+            <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
+        </tr>
+            <div class='{{item.code}}' style = 'display:none'>
+                <h3>{{item.item_name}}</h3>
+                <div>
+                    <p class='title'>XS</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XS}}</span>
+                        <span class='rem'>{{item.remaining_XS}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>S</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_S}}</span>
+                        <span class='rem'>{{item.remaining_S}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>M</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_M}}</span>
+                        <span class='rem'>{{item.remaining_M}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>L</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_L}}</span>
+                        <span class='rem'>{{item.remaining_L}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>XL</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XL}}</span>
+                        <span class='rem'>{{item.remaining_XL}}</span>
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Unisex</h2>
+<table id='report-table'>
+    <thead>
+        <tr>
+            <th>Prodotto</th>
+            <th>Codice</th>
+            <th>Colore</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        {% if item.item_type == 'Unisex'%}
+        <tr>
+            <td>{{item.item_name}}</td>
+            <td>{{item.code}}</td>
+            <td>{{item.color}}</td>
+            <td>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+            </td>
+            <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
+        </tr>
+            <div class='{{item.code}}' style = 'display:none'>
+                <h3>{{item.item_name}}</h3>
+                <div>
+                    <p class='title'>XS</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XS}}</span>
+                        <span class='rem'>{{item.remaining_XS}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>S</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_S}}</span>
+                        <span class='rem'>{{item.remaining_S}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>M</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_M}}</span>
+                        <span class='rem'>{{item.remaining_M}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>L</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_L}}</span>
+                        <span class='rem'>{{item.remaining_L}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>XL</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XL}}</span>
+                        <span class='rem'>{{item.remaining_XL}}</span>
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
     </tbody>
 </table>
 
@@ -188,20 +303,6 @@
     </tbody>
 </table>
 
-
-<script> 
-    a = []; 
-</script>
-
-{% for item in items %}
-    {% if item.item_type == 'Man' %}
-    <script> 
-        tot_remaining = parseFloat('{{item.remaining_XS}}') + parseFloat('{{item.remaining_S}}') + parseFloat('{{item.remaining_M}}') + parseFloat('{{item.remaining_L}}') + parseFloat('{{item.remaining_XL}}')
-        console.log(tot_remaining);
-        a.push(tot_remaining);
-    </script>
-    {% endif %}
-{% endfor %}
 
 <script>
     td = $('.tot_remaining').length;
