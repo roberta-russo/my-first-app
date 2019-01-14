@@ -207,6 +207,14 @@ h1{
     margin-bottom: 20px;
 }
 
+#report-table tr{
+    text-align: center;
+}
+
+#report-table th{
+    width: 300px;
+}
+
 #report-table thead{
     text-align: center;
     background: black;
