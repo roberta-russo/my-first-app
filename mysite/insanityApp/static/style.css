@@ -220,7 +220,7 @@ h1{
 }
 
 #report-table thead{
-    text-align: left;
+    text-align: center;
     background: black;
     color: #cab86f;
 }
@@ -229,6 +229,55 @@ h1{
     border-top: 1px solid grey;
     padding-top:5px;
     font-size: 20px;
+}
+
+#report-table tbody td:last-child{
+    text-align: center;
+}
+
+.view-report-btn{
+    padding: 0px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    background: #cab86f;
+    color: black;
+    cursor:pointer;
+}
+
+.report-item{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.report-item p{
+    width: 120px;
+    margin-left: 30px;
+}
+
+.report-item .title{
+    background: black; 
+    color: #cab86f;
+    text-align: center;
+    font-size: 20px;
+}
+
+.report-item .subtitle{
+    text-align: left;
+    border: 1px solid black;
+    font-size: 18px;
+}
+.report-item .subtitle span{
+    padding: 5px;
+}
+
+.report-item .count{
+    font-size: 18px;
+    border: 1px solid black;
+}
+
+.report-item .count span{
+    padding: 20px;
 }
 
 

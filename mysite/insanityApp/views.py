@@ -219,6 +219,7 @@ def man(request):
                         else:
                             return HttpResponse('Attenzione!Non ne hai abbastanza per venderli.')
 
+
             # if b != []:                
             #     # save the remaining size of this item 
             #     # list_size = {'remaining_XS' : 'XS', 

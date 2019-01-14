@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Report</h1>
 
-<h2>Man</h2>
+
 <!-- <table id='report-table'>
     <thead>
         <tr>
@@ -34,23 +34,95 @@
     </tbody>
 </table> -->
 
+<h2>Man</h2>
 <table id='report-table'>
     <thead>
         <tr>
-            <th>XS</th>
+            <th>Prodotto</th>
+            <th>Codice</th>
+            <th>Colore</th>
+            <th>Tot. Rimanenti</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
+    {% for item in items %}
+        {% if item.item_type == 'Man'%}
         <tr>
-            <td>Bianco</td>
-            <td>Nero</td>
+            <td>{{item.item_name}}</td>
+            <td>{{item.code}}</td>
+            <td>{{item.color}}</td>
+            <td class='tot_remaining'></td>
+            <td>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">View</button>
+            </td>
+            <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
-        <tr>
-            <td>tot bianco</td>
-            <td>rim bianco</td>
-            <td>tot Nero</td>
-            <td>rim nero</td>
-        </tr>
+            <div class='{{item.code}}' style = 'display:none'>
+                <h3>{{item.item_name}}</h3>
+                <div>
+                    <p class='title'>XS</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XS}}</span>
+                        <span class='rem'>{{item.remaining_XS}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>S</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_S}}</span>
+                        <span class='rem'>{{item.remaining_S}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>M</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_M}}</span>
+                        <span class='rem'>{{item.remaining_M}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>L</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_L}}</span>
+                        <span class='rem'>{{item.remaining_L}}</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class='title'>XL</p>
+                    <p class='subtitle'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot_XL}}</span>
+                        <span class='rem'>{{item.remaining_XL}}</span>
+                    </p>
+                </div>
+            </div>
+        
+        {% endif %}
+    {% endfor %}
     </tbody>
 </table>
 
@@ -86,7 +158,7 @@
 </table>
 
 <h2>Accessories</h2>
-<table id='report-table'>
+<table id='report-table' >
     <thead>
         <tr>
             <th>NAME</th>
@@ -116,18 +188,51 @@
     </tbody>
 </table>
 
+
+<script> 
+    a = []; 
+</script>
+
 {% for item in items %}
     {% if item.item_type == 'Man' %}
-    <script>
-        a = '{{ item.remaining_XS }}'
-        number = a*1;
-
-        if (number < 3){
-            console.log(number)
-        }
+    <script> 
+        tot_remaining = parseFloat('{{item.remaining_XS}}') + parseFloat('{{item.remaining_S}}') + parseFloat('{{item.remaining_M}}') + parseFloat('{{item.remaining_L}}') + parseFloat('{{item.remaining_XL}}')
+        console.log(tot_remaining);
+        a.push(tot_remaining);
     </script>
     {% endif %}
 {% endfor %}
+
+<script>
+    td = $('.tot_remaining').length;
+    for (var i=0; i<td; i++){
+        $('.tot_remaining').each(function(i){
+            $(this).text(a[i]);
+        });
+    }
+
+    function viewReport(code){
+        if ($('.'+code).css('display') == 'none'){
+            $('.'+code).addClass("report-item");
+            $('.'+code).show("slow");
+        }else{
+            $('.'+code).hide("slow");
+            // $('.'+code).removeClass("report-item");
+        }
+
+        span = $('.'+code).children().children('.count').children('.rem');
+        $(span).each(function(){
+            text = $(this).text();
+            if(text < 4){
+                $(this).css('color', 'red');
+            }
+        })
+        
+    }
+
+    
+    
+</script>
 
 
 {% endblock %}
