@@ -24,11 +24,10 @@ header img{
 }
 
 #home-icon{
-    font-size: 28px;
     font-weight: 400;
-    margin-top: 90px;
-    margin-left: 40px;
+    margin-left: 80px;
     text-align:left;
+    margin-top: 90px;
 }
 
 .spacer{
@@ -38,7 +37,7 @@ header img{
 #home-icon a{
     text-decoration: none;
     color:white;
-    font-size: 40px;
+    font-size: 45px;
 }
 
 #home-icon a:hover{
@@ -354,7 +353,11 @@ h1{
         padding: 0px 260px;}
 
     #home-icon a{
-        font-size: 45px;
+        font-size: 50px;
+    }
+
+    #home-icon{
+        margin-top: 75px;
     }
 }
 
@@ -364,7 +367,11 @@ h1{
         padding: 0px 200px;}
 
     #home-icon a{
-        font-size: 50px;
+        font-size: 60px;
+    }
+
+    #home-icon{
+        margin-top: 65px;
     }
 }
 
@@ -374,7 +381,11 @@ h1{
         padding: 0px;}
 
     #home-icon a{
-        font-size: 60px;
+        font-size: 65px;
+    }
+
+    #home-icon{
+        margin-top: 60px;
     }
 }
 
