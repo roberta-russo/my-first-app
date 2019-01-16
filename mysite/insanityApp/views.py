@@ -23,6 +23,8 @@ def new_accessories(request):
     if request.method == 'POST':
         if form.is_valid():
             item = form.save(commit=False)
+            tot = form.cleaned_data.get('tot')
+            item.tot_remaining = tot
             item.save()
         else:
             form = CreateAccessoriesForm()
