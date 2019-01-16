@@ -51,6 +51,8 @@ footer {
     background:  #cab86f;
     height: 50px;
     width:100%;
+    position: fixed;
+    bottom:0;
 }
 
 footer p{
@@ -62,22 +64,20 @@ footer p{
 main {
     padding: 0px 40px;
     width: 100%;
+    justify-content: center;
 }
 
 main img {
     padding: 0px 200px;
 }
 
-.container{
-    display:flex;
-    height: fit-content;
-}
+
 
 /*---- HOME----------------*/
 h1{
     text-align: center;
     padding-bottom: 60px;
-    margin:0;
+    margin-top:10px;
     font-size: 40px;
 }
 
@@ -118,6 +118,10 @@ h1{
 
 .woman-menu{
     background-image: url("img/donna.jpg");
+}
+
+.acc-menu{
+    background-image: url("img/accessories.jpg");
 }
 
 .report-menu{
@@ -238,10 +242,14 @@ h1{
     border-radius: 5px;
     font-size: 25px;
     background: #cab86f;
-    color: black;
     cursor:pointer;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.view-report-btn a{
+    text-decoration: none;
+    color: black;
 }
 
 .report-item{

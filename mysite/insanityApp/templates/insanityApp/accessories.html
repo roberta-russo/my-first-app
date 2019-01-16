@@ -4,6 +4,32 @@
 
 <h1>Accessori</h1>
 
+<div> 
+    {% for item in items %}
+    {% if item.item_type == 'Accessories' %}
+    <hr>
+    <div class='form-container'>
+        <div class='form-intro'>
+            <p>Name: <b>{{item.item_name}}</b></p>
+            <p>Code: <b>{{item.code}}</b></p>
+            <p>Color: <b>{{item.color}}</b></p>
+        </div>
+        <div class='form-div'>
+            <form method="POST" id='form-man'>
+                {% csrf_token %}
+
+                {{form}}
+            <br>
+
+                <button type='submit' class='save-btn sold-btn' name="{{item.code}},Venduto">Sold</button>
+                <button type='submit' class='save-btn sold-btn' name="{{item.code}},Aggiunto">Add</button>
+
+            </form>
+        </div>
+    </div> 
+    {% endif %}
+    {% endfor %}
+</div>
 
 
 {% endblock %}

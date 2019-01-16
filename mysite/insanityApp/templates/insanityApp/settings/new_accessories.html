@@ -1,0 +1,27 @@
+{% extends "insanityApp/base.html" %}
+{% block title %} New Accessory {% endblock %}
+
+
+{% block content %}
+<h1>New Accessory</h1>
+
+<form method='POST' id='create_form'>
+    {% csrf_token %}
+    {{form}}
+
+    <button type='submit' class='save-btn'>Save</button>
+</form>
+
+
+<script>
+    console.log($('#id_item_type').children('option'));
+    options = $('#id_item_type').children('option');
+    // options.each(function(){
+    //     if ($(this).val() == 'Unisex' || $(this).val()=='Man' || $(this).val()=='Woman'){
+    //         $(this).hide();
+    //     };
+    // })
+</script>
+
+
+{% endblock %}

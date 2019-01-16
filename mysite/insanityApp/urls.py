@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('man/', views.man, name='man'),
     path('woman/', views.woman, name='woman'),
     path('accessories/', views.accessories, name='accessories'),
@@ -18,6 +18,7 @@ urlpatterns = [
 
     path('create/', views.create, name='create'),
     path('create/new', views.new, name='new'),
+    path('create/new-accessories', views.new_accessories, name='new_accessories'),
     path('create/report', views.report, name='report'),
 
 

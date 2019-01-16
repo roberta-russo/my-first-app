@@ -32,8 +32,11 @@ class ITEM_TYPE_CHOICES(Enum):
     Unisex = 'Unisex'
     Man = 'Man'
     Woman = 'Woman'
-    Accessoriese = 'Accessories'
+    
+class ACCESSORY_TYPE_CHOICE(Enum):
+    Accessories = 'Accessories'
     Bracelets = 'Bracelets'
+
 
 class Item(models.Model):
     code = models.CharField(max_length=10, default='')
@@ -52,30 +55,40 @@ class Item(models.Model):
     remaining_XL = models.PositiveSmallIntegerField(default=0)
     # image = models.ImageField(upload_to='media/%Y/%m/%d/', null=True, blank=True)
 
+class AccessoryItem(models.Model):
+    code = models.CharField(max_length=10, default='')
+    item_name = models.CharField(max_length=50, default='')
+    item_type = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in ACCESSORY_TYPE_CHOICE], default='')
+    color = models.CharField(max_length=50, default='')
+    tot = models.PositiveSmallIntegerField(default=0)
+    tot_remaining = models.PositiveSmallIntegerField(default=0)
+
+
 class Man(models.Model):
-    # man_item = models.ForeignKey(Item,
-    #                 on_delete=models.CASCADE,
-    #                 related_name='item',
-    #                 default=0,
-    #             )
-    # id_item = models.PositiveSmallIntegerField(default=0)
-    # name = models.CharField(max_length=50, default='')
-    # color = models.CharField(max_length=10, default='')
     code = models.CharField(max_length=10, default='')
     size = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in Size], default='')
     sold = models.PositiveSmallIntegerField(default=0)
+    activity = models.CharField(max_length=50, default='')
     created_date = models.DateTimeField(default=timezone.now)
 
 class Woman(models.Model):
     code = models.CharField(max_length=10, default='')
     size = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in Size], default='')
     sold = models.PositiveSmallIntegerField(default=0)
+    activity = models.CharField(max_length=50, default='')
     created_date = models.DateTimeField(default=timezone.now)
 
 class Unisex(models.Model):
     code = models.CharField(max_length=10, default='')
     size = models.CharField(max_length=20, choices=[(tag.name, tag.value) for tag in Size], default='')
     sold = models.PositiveSmallIntegerField(default=0)
+    activity = models.CharField(max_length=50, default='')
+    created_date = models.DateTimeField(default=timezone.now)
+
+class Accessories(models.Model):
+    code = models.CharField(max_length=10, default='')
+    sold = models.PositiveSmallIntegerField(default=0)
+    activity = models.CharField(max_length=50, default='')
     created_date = models.DateTimeField(default=timezone.now)
 
 

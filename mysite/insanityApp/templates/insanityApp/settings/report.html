@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Report</h1>
 
-<h2>Man</h2>
+<h2 id='man'>Man</h2>
 <table id='report-table'>
     <thead>
         <tr>
@@ -22,11 +22,13 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">
+                    <a href='#man'>Visualizza</a>
+                </button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
-            <div class='{{item.code}}' style = 'display:none'>
+            <div class='{{item.code}}' style='display:none'>
                 <h3>{{item.item_name}}</h3>
                 <div>
                     <p class='title'>XS</p>
@@ -94,7 +96,7 @@
 </table>
 
 
-<h2>Woman</h2>
+<h2 id='woman'>Woman</h2>
 <table id='report-table'>
     <thead>
         <tr>
@@ -112,11 +114,13 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">
+                    <a href='#woman'>Visualizza</a>
+                </button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
-            <div class='{{item.code}}' style = 'display:none'>
+            <div class='{{item.code}}' style ='display:none'>
                 <h3>{{item.item_name}}</h3>
                 <div>
                     <p class='title'>XS</p>
@@ -183,7 +187,7 @@
     </tbody>
 </table>
 
-<h2>Unisex</h2>
+<h2 id='unisex'>Unisex</h2>
 <table id='report-table'>
     <thead>
         <tr>
@@ -201,7 +205,9 @@
             <td>{{item.code}}</td>
             <td>{{item.color}}</td>
             <td>
-                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">Visualizza</button>
+                <button class='view-report-btn' onclick="viewReport('{{item.code}}')">
+                    <a href='#unisex'>Visualizza</a>
+                </button>
             </td>
             <!-- <td >{{item.remaining_XS}} + {{item.remaining_S}} </td> -->
         </tr>
@@ -279,14 +285,34 @@
             <th>Prodotto</th>
             <th>Codice</th>
             <th>Colore</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {% for item in items %}
-            {% if item.item_type == 'Accessoriese' %}
+        {% for item in accessories %}
+            {% if item.item_type == 'Accessories' %}
             <tr>
-                            
+                <td>{{item.item_name}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.color}}</td>
+                <td>
+                    <button class='view-report-btn' onclick="viewReport('{{item.code}}')">
+                        <a href='#unisex'>Visualizza</a>
+                    </button>
+                </td>       
             </tr>
+            <div class='{{item.code}}' style='display:none'>
+                <h3>{{item.item_name}}</h3>
+                <div>
+                    <p class='title'>
+                        <span>Begin</span>
+                        <span>Now</span>
+                    </p>
+                    <p class='count'>
+                        <span>{{item.tot}}</span>
+                        <span class='rem'>{{item.tot_remaining}}</span>
+                    </p>
+                </div>
             {% endif %}
         {% endfor %}
     </tbody>
@@ -294,6 +320,7 @@
 
 <script>
     td = $('.tot_remaining').length;
+
     for (var i=0; i<td; i++){
         $('.tot_remaining').each(function(i){
             $(this).text(a[i]);
@@ -304,6 +331,7 @@
         if ($('.'+code).css('display') == 'none'){
             $('.'+code).addClass("report-item");
             $('.'+code).show("slow");
+            // console.log($('#link').attr('href', '#'+code))
         }else{
             $('.'+code).hide("slow");
             // $('.'+code).removeClass("report-item");
@@ -322,7 +350,6 @@
         td = $(this).parent();
         tr = td.parent();
         tr.toggleClass('toggle');
-        
     })
 
     
