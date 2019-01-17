@@ -124,6 +124,10 @@ h1{
     background-image: url("img/accessories.jpg");
 }
 
+.brac-menu{
+    background-image: url("img/bracciali.png");
+}
+
 .report-menu{
     background-image: url("img/resoconto.jpg");
 }
