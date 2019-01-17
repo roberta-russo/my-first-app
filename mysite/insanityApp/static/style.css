@@ -202,12 +202,20 @@ h1{
 }
 
 /*---------------- REPORT PAGE ---------------*/
+#man,
+#woman,
+#unisex,
+#accessories{
+    margin-left:80px;
+}
 
 #report-table{
     width: 900px;
     border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 20px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #report-table tr{
@@ -255,6 +263,8 @@ h1{
 .report-item{
     display: flex;
     margin-bottom: 20px;
+    margin-left: 80px;
+    margin-top: 20px;
 }
 
 .report-item p{
